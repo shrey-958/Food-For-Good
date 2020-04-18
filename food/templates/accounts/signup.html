@@ -1,0 +1,8 @@
+SIGN UP PAGE BITCHES
+
+<form method = "POST" action = "/accounts/signup/">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Signup">
+
+</form>

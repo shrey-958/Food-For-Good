@@ -1,0 +1,11 @@
+This is Cart View Bitches
+<br/>
+YOUR CURRENT WISHLIST
+<br/>
+{% for dish_i in order.dishes.all %}
+ 
+<br/ >
+<br/ >
+{{dish_i.dish_name.title}} &nbsp;  {{dish_i.dish_name.price}} &nbsp;{{dish_i.quantity}}
+
+{% endfor %}

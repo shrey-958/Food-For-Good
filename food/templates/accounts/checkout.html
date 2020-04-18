@@ -1,0 +1,49 @@
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+  {% include 'partials/_navbar.html' %}
+
+<style>@import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
+    body{
+        margin:0px;
+        padding:0px;
+    }
+    .chkout-img{
+        margin-left: 35%;
+        margin-top: 20px;
+        width: 400px;
+    }
+    .chkout-mssg{
+        font-family: Quicksand;
+        text-align: center;
+        font-size: 140%;
+        font-weight: bold;
+        color: rgb(22, 21, 21);
+    }
+    .cont-shop{
+        margin-left: 40%;
+        background-color: blue;
+        border: none;
+        width: 20%;
+        height: 50px;
+        border-radius: 30px;
+        margin-top: 15px;
+    }
+    a.men-link{
+        color: rgb(255, 255, 255);
+        text-decoration: none;
+        font-family: Quicksand;
+        font-size: 150%;
+    }
+
+</style>
+
+<body>
+    
+<img class="chkout-img" src="https://image.freepik.com/free-vector/delivery-service-with-man-bicycle_23-2148496521.jpg" alt="">
+
+<div class="chkout-mssg"><i style="color:rgb(240, 88, 61);" class="fas fa-carrot"></i> Sit Tight! Yummy ingredients are on their way, just for you. <i style="color: rgb(29, 199, 29);" class="fas fa-seedling"></i></div>
+
+<button class="cont-shop"><a class="men-link" href="{% url 'recipe:list' %}">Continue Shopping</a></button>
+
+</body>

@@ -1,0 +1,167 @@
+
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+
+<style>@import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
+    body{
+        background-color: white;
+        font-family: sans-serif;
+        margin:0px;
+        padding:0px;
+    }
+    .page-head{
+        text-align: center;
+        font-family: Quicksand;
+        font-size: 150%;
+        font-weight: bold;
+        margin-top: 40px;
+        margin-bottom: 15px;
+        color: rgb(180, 88, 21);
+    }
+    .card-layout{
+        border:1px solid rgb(202, 147, 125);
+        margin-left: 10%;
+        margin-right: 30%;
+        width: 40%;
+        padding-left: 65px;
+        margin-bottom: 5px;
+        border-radius: 5px;
+        box-shadow: 10px 5px 5px 0px rgba(211, 165, 123, 0.75);
+        background-color: beige;
+        float: right;
+       
+
+       
+    }
+    .upper{
+        display: inline-block;
+        margin-top: 5px;
+        
+    }
+    .order-head{
+        float: left;
+        font-size: 105%;
+        
+        
+    }
+    .deli-status{
+        float: right;
+        margin-left: 75px;
+        font-size: 1.2rem;
+        font-family: Quicksand;
+       
+    }
+    .tot{
+        font-size: 140%;
+    }
+    table, th, td {
+  
+  border-collapse: collapse;
+  margin-bottom: 5px;
+  font-family: sans-serif;
+}
+th, td {
+  padding: 5px;
+}
+th {
+  text-align: left;
+  font-weight:600;
+}
+hr.below-tot{
+    width: 80%;
+    margin-left: 0%;
+    border-top: 1px dashed rgb(109, 103, 103);
+}
+.container{
+    width:100%;
+    height:100;
+    
+}
+.page-img-cls{
+    float: left;
+    width: 30%;
+    
+}
+.page-img{
+    margin-top: -40px;
+    height: 85vh;
+    width: 28vw;
+    margin-left: 10px;
+   
+
+}
+.table4 {
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+        border: 0;
+      }
+.new1{
+    width: 20%;
+
+}
+.new2{
+    width: 80%;
+}
+    
+</style>
+{% include 'partials/_navbar.html' %}
+<br>
+
+<div class="page-head">Your Order History, {{user.username}}</div>
+<table class="table4">
+    <tr>
+      <td class="new1">
+
+<div class="page-img-cls"><img class="page-img" src="https://agentpekka.com/wp-content/uploads/2015/06/AP_Robin_Davey_Outtolunch_2x.jpg" alt=""></div></td>
+<td class="new2">
+{% for order in orders %}
+
+<div class="card-layout">
+    <div class="upper">
+        <div class="order-head">ORDER</div>
+        <div class="deli-status">{% if order.isDelivered %}
+            <i style="color: rgb(21, 138, 17);" class="fas fa-check"></i> <b>Delivered</b> 
+            {%  else %}
+            
+            <i style="color: blue;" class="fas fa-shipping-fast"></i> <b>On the Way</b>
+            {% endif %}</div>
+           
+    </div>
+    <br>
+    <br>
+    <div class="order-date"><i class="fas fa-clock"></i> {{order.date}}</div>
+    <br>
+    <table>
+        <tr>
+            <th>Dish</th>
+            <th>Price(Rs.)</th>
+            <th>Quantity</th>
+        </tr>
+        
+        {% for dish_i in order.dishes.all %}
+        <tr>
+            <td>{{dish_i.dish_name.title}}</td>
+            <td> {{dish_i.dish_name.price}}</td>
+            <td>{{dish_i.quantity}}</td>
+
+        </tr>
+        {% endfor %}
+
+       
+        <div class="tot">Total - Rs. {{order.total|floatformat:"0"}} </div>
+        <hr class="below-tot">
+     </table>
+</div>
+{% endfor %}
+</td>
+</tr>
+</table>
+
+
+    
+
+
+
+

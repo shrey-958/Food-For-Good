@@ -1,0 +1,110 @@
+
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+{% include 'partials/_navbar.html' %}
+
+<style>
+
+    body{
+        background-color: beige ;
+        margin:0px;
+        padding:0px;
+    }
+    a{
+        text-decoration: none;
+    }
+    .chk-out{
+        width: 100px;
+        height: 40px;
+        font-size: 1rem;
+        background-color: rgb(3, 139, 3);
+        border: none;
+        color: white;
+        border-radius: 20px;
+    }
+    a.chk{
+        color: white;
+    }
+    .title-txt{
+        text-align: center;
+        font-family: sans-serif;
+        
+    }
+    table {
+      border-collapse: collapse;
+      width: 50%;
+      margin-left: 25%;
+      font-family: sans-serif;
+    }
+    .tab-head{
+        font-size: 120%;
+    }
+    
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    tr:hover {background-color:rgb(209, 186, 164);}
+    </style>
+
+
+<div style="padding-top: 6%;">
+{% if order.total == 0  %}
+
+<h1 class="title-txt">You do not have an active order :(</h1>
+
+{% else %}
+
+<h1 class="title-txt">Your Cart</h1>
+<table>
+    <tr>
+      <th class="tab-head">Sr.</th>
+      <th class="tab-head">Dish</th>
+      <th class="tab-head">Price(Rs.)</th>
+      <th class="tab-head">Quantity</th>
+      <th class="tab-head">Dish-Total(Rs.)</th>
+      <th></th>
+    </tr>
+    {% for dish_i in order.dishes.all %}
+    <tr>
+ 
+        <th>{{forloop.counter}}</th>
+        <th>{{dish_i.dish_name.title}}</th>
+        <th>{{dish_i.dish_name.price}} </th>  
+<th>
+    <a href="{% url 'accounts:removeitemfromcart' slug=dish_i.dish_name.slug %}"><i style="color: blue;" class="fa fa-minus" aria-hidden="true"></i></a>
+&nbsp; 
+{{dish_i.quantity}} 
+&nbsp;
+<a href="{% url 'accounts:additemtocart' slug=dish_i.dish_name.slug %}"><i style="color:  blue;" class="fa fa-plus" aria-hidden="true"></i>
+</a>
+
+</th>
+<th>{{dish_i.cost}}
+</th>
+&nbsp;
+<th>
+<a style="margin-left: 25%;" href="{% url 'accounts:removefullitemfromcart' slug=dish_i.dish_name.slug %}"><i style="color: red;" class="fas fa-trash-alt"></i></a>
+</th> 
+</tr>
+
+{% endfor %}
+<tr >
+    <th></th>
+    <th></th>
+    <th></th>
+    <th><h2 style="margin-top: 5px;">TOTAL </h2></th>
+    <th><h2  style="margin-top: 5px;">{{order.total}}</h2</th>
+    <th><button class="chk-out"><a class= "chk" href="{% url 'accounts:checkout' %}">Checkout</a></button></th>
+  </tr>
+  
+
+    
+  </table>
+
+  {% endif %}
+
+</div>

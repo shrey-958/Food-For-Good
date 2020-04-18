@@ -1,0 +1,155 @@
+<style>@import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
+    .nav {
+  height: 53px;
+  width: 100%;
+  background-color:#522214;
+  position: fixed;
+  z-index: 4;
+  font-family: Quicksand;
+}
+
+.nav > .nav-header {
+  display: inline;
+}
+
+.nav > .nav-header > .nav-title {
+  display: inline-block;
+  font-size: 22px;
+  color: #fff;
+  padding: 10px 10px 10px 10px;
+}
+
+.nav > .nav-btn {
+  display: none;
+}
+
+.nav > .nav-links {
+  display: inline;
+  margin-left: 50%;
+  font-size: 18px;
+  
+}
+
+.nav > .nav-links > a {
+  display: inline-block;
+  padding: 13px 10px 13px 10px;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.nav > .nav-links > a:hover {
+  
+  color: yellow;
+  
+}
+
+.nav > #nav-check {
+  display: none;
+}
+
+@media (max-width:600px) {
+  .nav > .nav-btn {
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+  }
+  .nav > .nav-btn > label {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    padding: 13px;
+  }
+  .nav > .nav-btn > label:hover,.nav  #nav-check:checked ~ .nav-btn > label {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  .nav > .nav-btn > label > span {
+    display: block;
+    width: 25px;
+    height: 10px;
+    border-top: 2px solid #eee;
+  }
+  .nav > .nav-links {
+    position: absolute;
+    display: block;
+    width: 100%;
+    background-color: #333;
+    height: 0px;
+    transition: all 0.3s ease-in;
+    overflow-y: hidden;
+    top: 50px;
+    left: 0px;
+  }
+  .nav > .nav-links > a {
+    display: block;
+    width: 100%;
+  }
+  .nav > #nav-check:not(:checked) ~ .nav-links {
+    height: 0px;
+  }
+  .nav > #nav-check:checked ~ .nav-links {
+    height: calc(100vh - 50px);
+    overflow-y: auto;
+  }
+}
+.navbutt{
+  background-color:#522214;
+  color: white;
+  border: none;
+  font-size: 18px;
+  font-weight: lighter;
+  
+  
+}
+:hover.navbutt{
+  
+  color: yellow;
+  cursor: pointer;
+
+}
+</style>
+
+
+<div class="nav">
+    <input type="checkbox" id="nav-check">
+    <div class="nav-header">
+      <div class="nav-title">
+        &nbsp;
+        <i class="fas fa-pizza-slice"></i>
+        
+        Food For Good
+        <i class="fa fa-heart" aria-hidden="true"></i>
+      </div>
+    </div>
+    <div class="nav-btn">
+      <label for="nav-check">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+    </div>
+    
+    <div class="nav-links">
+      
+      <a  href="{% url 'recipe:list' %}"><i class="fas fa-utensils"></i>&nbsp;Menu</a>
+      {% if user.is_authenticated %}
+      <a  href="{% url 'accounts:ordersummary' %}"><i class="fas fa-shopping-cart"></i>&nbsp;Cart</a>
+      <a  href="{% url 'accounts:orderhistory' %}"><i class="fas fa-history"></i>&nbsp;History</a>
+     
+     <a><form action="{% url 'accounts:logout' %}" method="POST">
+        {% csrf_token %}
+        <button class="navbutt" type="submit"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout</button>
+    </form></a>
+    {% else %}
+    <a><form action="{% url 'accounts:login' %}" method="POST">
+      {% csrf_token %}
+      <button class="navbutt" type="submit"><i class="fas fa-sign-in-alt"></i>&nbsp;Login</button>
+  </form></a>
+  <a><form action="{% url 'accounts:signup' %}" method="POST">
+      {% csrf_token %}
+      <button class="navbutt" type="submit"><i class="fas fa-user-plus"></i>&nbsp;Signup</button>
+  </form></a>
+
+  {% endif %}
+    </div>
+  </div>
