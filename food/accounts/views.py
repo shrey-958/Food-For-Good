@@ -6,23 +6,31 @@ from recipe.models import Order, OrderItem, Dish
 from django.http import HttpResponse
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
-from .forms import CreateUserForm
+from .forms import CreateUserForm, ProfileForm
 
 # Create your views here.
 def signup_view(request):
     #form = UserCreationForm()
     if request.method == 'POST' : 
         form =  CreateUserForm(request.POST)
-        if form.is_valid():
+        profile_form = ProfileForm(request.POST)
+        if form.is_valid() and profile_form.is_valid():
             user = form.save()
+
+            profile = profile_form.save(commit=False)
+            profile.user = user
+            profile.save()
             login(request, user)
             return redirect('recipe:list')
 
     else : 
 
         form = CreateUserForm()
+        profile_form = ProfileForm()
         
-    return render(request, 'accounts/signup.html', {'form' : form})
+    context = {'form': form, 'profile_form': profile_form}
+        
+    return render(request, 'accounts/signup.html', context)
 
 
 def login_view(request):
