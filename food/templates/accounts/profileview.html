@@ -1,0 +1,32 @@
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+
+<style>@import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
+    body{
+        margin:0px;
+        padding:0px;
+    }
+    
+    
+    
+    .txtt{
+        margin-top: 2%;
+        margin-left: 15%;
+        margin-right: 20%;
+        font-family: Quicksand;
+        font-size: 140%;
+    }
+    
+</style>
+
+    {% include 'partials/_navbar.html' %}
+
+    <div style="padding-top: 6%;">
+        <div class="txtt"><b>FIRST NAME -</b> {{user.first_name}}</div>
+        <div class="txtt"><b>LAST NAME - </b> {{user.last_name}}</div>
+        <div class="txtt"><b>EMAIL ID -</b> {{user.email}} </div>
+        <div class="txtt"><b>MOBILE NUMBER -</b>  +91 {{user.profile.phone}}</div>
+        <div class="txtt"><b>ADDRESS -</b>  {{user.profile.address}}</div>
+       
+        </div>

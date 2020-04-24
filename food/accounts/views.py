@@ -216,6 +216,12 @@ def checkout(request):
      return render(request, "accounts/checkout.html")
 
 
+@login_required(login_url= "/accounts/login")
+def profileview(request):
+    return render(request, "accounts/profileview.html")
+
+
+
     
 
 

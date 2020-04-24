@@ -25,7 +25,7 @@
 
 .nav > .nav-links {
   display: inline;
-  margin-left: 50%;
+  margin-left: 45%;
   font-size: 18px;
   
 }
@@ -135,6 +135,7 @@
       {% if user.is_authenticated %}
       <a  href="{% url 'accounts:ordersummary' %}"><i class="fas fa-shopping-cart"></i>&nbsp;Cart</a>
       <a  href="{% url 'accounts:orderhistory' %}"><i class="fas fa-history"></i>&nbsp;History</a>
+      <a  href="{% url 'accounts:profileview' %}"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;Profile</a>
      
      <a><form action="{% url 'accounts:logout' %}" method="POST">
         {% csrf_token %}
