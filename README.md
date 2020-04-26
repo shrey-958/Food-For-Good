@@ -16,4 +16,7 @@ Ingredient delivery site made while learning Django.
 
 ![Screenshot (91)](https://user-images.githubusercontent.com/53819899/80304775-ce785d80-87d5-11ea-9629-bbc7a1ca8c56.png)
 
+CREDITS : 
+1. Illustration - Agent Pekka
+
 
