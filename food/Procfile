@@ -1,1 +1,1 @@
-web: gunicorn foodforgood.wsgi
+web: gunicorn foodforgood-premium.wsgi
